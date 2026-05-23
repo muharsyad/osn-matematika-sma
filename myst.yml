@@ -1,0 +1,45 @@
+# See docs at: https://mystmd.org/guide/frontmatter
+version: 1
+project:
+  id: 5f9c7abc-7d6b-4599-a648-dc5e264db2b9
+  title: OSN Matematika SMA
+  description: Course persiapan Olimpiade Sains Nasional Matematika SMA
+  # keywords: []
+  # authors: []
+  # github:
+  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  toc:
+    - file: index.md
+    - title: Modul 1 - Aljabar
+      children:
+        - file: modul-1-aljabar\pengantar-dan-ketaksamaan.md
+        - file: modul-1-aljabar\barisan.md
+        - file: modul-1-aljabar\polinom.md
+        - file: modul-1-aljabar\fungsi.md
+        - file: modul-1-aljabar\uji-kompetensi-1.md
+    - title: Modul 2 - Geometri
+      children:
+        - file: modul-2-geometri\sudut.md
+        - file: modul-2-geometri\segitiga.md
+        - file: modul-2-geometri\lingkaran.md
+        - file: modul-2-geometri\uji-kompetensi-2.md
+    - title: Modul 3 - Kombinatorik
+      children:
+        - file: modul-3-kombinatorik\pencacahan.md
+        - file: modul-3-kombinatorik\binomial.md
+        - file: modul-3-kombinatorik\peluang.md
+        - file: modul-3-kombinatorik\himpunan.md
+        - file: modul-3-kombinatorik\uji-kompetensi-3.md
+    - title: Modul 4 - Teori Bilangan
+      children:
+        - file: modul-4-teori-bilangan\keterbagian.md
+        - file: modul-4-teori-bilangan\kongruensi.md
+        - file: modul-4-teori-bilangan\order.md
+        - file: modul-4-teori-bilangan\persamaan-kongruensi.md
+        - file: modul-4-teori-bilangan\uji-kompetensi-4.md
+site:
+  title: Muhacode | OSN Matematika SMA
+  template: book-theme
+  
+  options:
+    favicon: assets/logo.svg
