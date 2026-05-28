@@ -1,0 +1,122 @@
+# Polinomial (Suku Banyak)
+
+## Sifat-Sifat Dasar, Algoritma Pembagian, dan Teorema Sisa/Faktor
+
+Dalam eksplorasi aljabar tingkat lanjut, polinomial (suku banyak) menempati posisi yang sangat fundamental. Objek matematis ini tidak hanya berperan sebagai perluasan alami dari representasi bilangan real dalam bentuk fungsi, tetapi juga menjadi basis bagi aljabar abstrak dan teori bilangan. Sebelum menganalisis karakteristik akar dan identitas tingkat tinggi, penguasaan terhadap anatomi dasar dan operasi aritmatika polinomial adalah prasyarat mutlak.
+
+### Pengantar
+
+Polinomial dapat dipandang sebagai sebuah ekspresi aljabar yang dikonstruksi melalui operasi penjumlahan dan perkalian menggunakan konstanta dan sebuah variabel bebas (independen) yang dipangkatkan dengan bilangan cacah.
+
+::::{prf:definition}
+Sebuah polinomial $P(x)$ dalam variabel bebas $x$ di atas himpunan bilangan real $\mathbb{R}$ adalah ekspresi aljabar yang dapat dituliskan dalam bentuk standar:
+:::{math}
+P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0
+:::
+di mana:
+1. $n$ adalah bilangan cacah ($n \in \mathbb{W}$),
+2. $a_0, a_1, \dots, a_n$ adalah konstanta real ($a_i \in \mathbb{R}$) yang disebut sebagai koefisien polinomial,
+3. $a_n \neq 0$.
+::::
+
+Berdasarkan definisi struktural di atas, kita dapat menurunkan beberapa terminologi esensial yang melekat pada setiap polinomial:
+* Derajat (Degree): Pangkat tertinggi dari variabel $x$ pada polinomial tersebut. Jika $a_n \neq 0$, maka polinomial $P(x)$ dikatakan berderajat $n$. Derajat polinomial umumnya dinotasikan secara analitik dengan $\deg(P(x)) = n$.
+* Koefisien Utama (Leading Coefficient): Koefisien dari suku dengan pangkat tertinggi, yakni $a_n$.
+* Suku Tetap (Konstanta / Constant Term): Suku yang tidak memuat variabel $x$ (atau $x^0$), yakni $a_0$.
+* Polinomial Monik (Monic Polynomial): Sebuah polinomial khusus di mana nilai koefisien utamanya adalah tepat $1$ ($a_n = 1$).
+
+
+:::{prf:definition}
+Dua buah polinomial $P(x) = a_n x^n + \dots + a_0$ dan $Q(x) = b_m x^m + \dots + b_0$ dikatakan identik atau sama ($P(x) \equiv Q(x)$) jika dan hanya jika kedua polinomial tersebut memiliki derajat yang sama ($n = m$) dan koefisien pada setiap suku yang bersesuaian bernilai sama ($a_i = b_i$ untuk setiap $i$).
+:::
+
+Kumpulan seluruh polinomial dengan koefisien real tertutup terhadap operasi penjumlahan, pengurangan, dan perkalian. Misalkan diberikan dua polinomial $P(x)$ dan $Q(x)$, maka berlaku sifat-sifat derajat berikut:
+
+::::{prf:proposition}
+1. Penjumlahan/Pengurangan: \
+    Derajat dari polinomial hasil penjumlahan atau pengurangan tidak akan melebihi derajat maksimum dari kedua polinomial pembentuknya.
+    :::{math}
+    \deg(P(x) \pm Q(x)) \leq \max(\deg(P(x)), \deg(Q(x)))
+    :::
+    (Tanda ketaksamaan berlaku jika suku-suku berderajat tinggi saling menghilangkan).
+2. Perkalian:\
+   Derajat dari polinomial hasil perkalian adalah eksak sama dengan jumlahan dari derajat masing-masing polinomial.
+    :::{math}
+    \deg(P(x) \cdot Q(x)) = \deg(P(x)) + \deg(Q(x))
+    :::
+::::
+
+### Algoritma Pembagian Polinomial
+
+Sebagaimana bilangan bulat yang dapat dibagi dengan bilangan bulat lainnya menghasilkan hasil bagi dan sisa, polinomial juga memiliki struktur aritmatika yang serupa. Karakteristik ini dijamin keabsahannya oleh Algoritma Pembagian, yang merupakan pilar utama dalam pemfaktoran aljabar.
+
+::::{prf:theorem}
+Misalkan $P(x)$ dan $D(x)$ adalah polinomial dengan koefisien real, dan $D(x)$ bukan polinomial nol ($D(x) \neq 0$). Maka, terdapat tepat satu pasang polinomial unik, yaitu polinomial hasil bagi $H(x)$ dan polinomial sisa $S(x)$, sedemikian sehingga berlaku identitas:
+:::{math}
+P(x) = D(x) \cdot H(x) + S(x)
+:::
+dengan syarat mutlak bahwa $S(x) = 0$ (pembagian bersisa nol/habis dibagi) atau derajat dari polinomial sisa harus secara ketat lebih kecil dari derajat polinomial pembagi ($\deg(S(x)) < \deg(D(x))$).
+::::
+
+Untuk menentukan $H(x)$ dan $S(x)$ secara teknis, terdapat dua metode komputasional yang lazim digunakan di tingkat olimpiade:
+
+1. Pembagian Bersusun (Long Division)\
+    Metode ini adalah generalisasi langsung dari pembagian bersusun panjang pada bilangan bulat. Langkah-langkahnya melibatkan eliminasi secara sistematis pada suku berderajat tertinggi dari polinomial yang dibagi ($P(x)$) menggunakan suku berderajat tertinggi dari polinomial pembagi ($D(x)$). Metode ini sangat universal dan bebas digunakan untuk bentuk pembagi $D(x)$ berderajat berapapun (linier, kuadrat, atau lebih tinggi).
+2. Metode Pembagian Sintetik (Metode Horner)\
+    Metode Pembagian Sintetik, yang di Indonesia sering dikenal sebagai Skema Horner, adalah algoritma reduksi baris yang sangat efisien, ringkas, dan meminimalisir kesalahan penulisan variabel. Metode ini mengevaluasi operasi pembagian dengan hanya memanipulasi barisan koefisiennya saja.\
+    Meskipun sangat cepat, penggunaan Metode Horner standar (tanpa modifikasi matriks) umumnya dibatasi khusus untuk pembagi berderajat satu (linier) dengan bentuk umum $(x - c)$ atau $(ax - b)$.
+
+### Teorema Sisa dan Teorema Faktor
+
+Algoritma pembagian memicu lahirnya dua jembatan logika paling krusial di dalam teori polinomial: Teorema Sisa dan Teorema Faktor. Kedua teorema ini memungkinkan kita untuk mengekstraksi informasi vital tentang sisa pembagian dan titik potong sumbu-$x$ tanpa harus bersusah payah melakukan operasi pembagian sama sekali.
+
+::::{prf:theorem}
+Jika sebuah polinomial $P(x)$ dibagi oleh polinomial linier berbentuk $(x - c)$ di mana $c \in \mathbb{R}$, maka sisa pembagiannya adalah sebuah konstanta yang nilainya eksak sama dengan nilai fungsi polinomial tersebut saat dievaluasi pada $x = c$.
+:::{math}
+S = P(c)
+:::
+::::
+
+::::{prf:corollary}
+Berdasarkan Teorema Sisa, jika polinomial $P(x)$ dibagi oleh polinomial linier berbentuk $(ax - b)$ dengan $a \neq 0$, maka sisa pembagiannya adalah:
+:::{math}
+S = P\left(\frac{b}{a}\right)
+:::
+::::
+
+Teorema Sisa mendemonstrasikan hubungan ekuivalensi yang elegan antara "sisa pembagian aljabar" dengan "nilai substitusi fungsi". Ketika nilai substitusi fungsi ini menghasilkan angka nol, kita mendapatkan sebuah kasus istimewa yang mendefinisikan Teorema Faktor.
+
+:::{prf:theorem}
+Sebuah polinomial linier $(x - c)$ adalah faktor eksak dari polinomial $P(x)$ jika dan hanya jika nilai polinomial tersebut pada $x = c$ adalah nol, yakni $P(c) = 0$.
+:::
+
+Narasi "jika dan hanya jika" (implikasi dua arah) pada Teorema Faktor mengandung dua konsekuensi analitik yang sama kuatnya:
+
+1. Jika diketahui $(x-c)$ adalah faktor, maka dipastikan $P(c) = 0$ (sisa pembagiannya nol).
+2. Jika kita secara acak menemukan suatu nilai $c$ yang membuat $P(c) = 0$, maka kita secara sah telah menemukan sebuah faktor dari polinomial tersebut, yaitu $(x-c)$.
+
+Bilangan $c$ yang menyebabkan $P(c)=0$ ini secara formal disebut sebagai Akar Polinomial (atau pembuat nol fungsi).
+
+Sebagai pilar penutup yang mengikat Teorema Faktor dengan derajat polinomial, kita dapat menurunkan sebuah batasan fundamental (lemma) mengenai jumlah maksimum akar yang mungkin dimiliki oleh sebuah fungsi aljabar berhingga.
+
+:::{prf:lemma}
+Sebuah polinomial $P(x)$ berderajat $n \geq 1$ dengan koefisien real dapat memiliki paling banyak (maksimum) $n$ buah akar real yang berbeda.
+:::
+
+Lemma ini sangat vital di dalam penyelesaian soal olimpiade, karena ia menegaskan bahwa sebuah persamaan polinomial berderajat n tidak mungkin dipecahkan dan menghasilkan lebih dari n buah solusi real yang valid. Konsep ini kelak akan bermuara pada Teorema Fundamental Aljabar dan identitas polinomial yang akan dieksplorasi pada subbab selanjutnya.
+
+## Teorema Akar Rasional dan Penyelesaian Persamaan Dasar
+
+Setelah memahami struktur algoritma pembagian dan Teorema Faktor pada pembahasan sebelumnya, tantangan analitik selanjutnya adalah menemukan nilai-nilai eksak yang membatalkan (membuat nol) fungsi polinomial tersebut. Proses transisi dari manipulasi ekspresi menjadi pencarian nilai kebenaran inilah yang membawa kita pada kajian persamaan polinomial dasar dan metodologi pencarian akarnya.
+
+### Persamaan Polinomial dan Konsep Akar
+
+Dalam ruang lingkup aljabar, ketika sebuah fungsi polinomial dihadapkan pada suatu kondisi kesamaan (umumnya disamakan dengan nol), ekspresi tersebut berubah statusnya dari sekadar fungsi menjadi sebuah persamaan.
+
+::::{prf:defition}
+Misalkan $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$ adalah sebuah polinomial berderajat $n \geq 1$ di mana koefisien $a_i \in \mathbb{R}$ dan $a_n \neq 0$. Persamaan dalam bentuk:
+:::{math}
+P(x) = 0
+:::
+disebut sebagai persamaan polinomial berderajat $n$.
+::::

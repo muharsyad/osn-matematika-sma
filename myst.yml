@@ -43,3 +43,4 @@ site:
   
   options:
     favicon: assets/logo.svg
+    logo: assets/logo-nav.png
